@@ -6,7 +6,7 @@ VERIFICAR SE A CONTA EXISTE
 
 """
 
-from DataBase import db
+from database import db
 
 class Registro():
 

@@ -1,10 +1,10 @@
 
-from DataBase import db
+from database import db
 
 class Login:
 
     def __init__(self):
-        self.db = db.Database()
+        self.db = db.Database("RedeSocial")
 
     def Login(self, email, senha):
         try:
