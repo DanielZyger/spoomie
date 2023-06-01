@@ -1,12 +1,12 @@
 
 from database import db
 
-class Login:
+class Entrar:
 
     def __init__(self):
         self.db = db.Database("RedeSocial")
 
-    def Login(self, email, senha):
+    def login(self, email, senha):
         try:
             self.db.cursor.execute("SELECT email, senha FROM usuarios WHERE email=? and senha=?", (email, senha,))
             if self.db.cursor.fetchone():

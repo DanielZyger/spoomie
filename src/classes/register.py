@@ -13,16 +13,16 @@ class Registro():
     def __init__(self):
         self.db = db.Database()
 
-    def criaNewUser(self, nome, sobrenome, email):
+    def criaNewUser(self, nome, data_nascimento, telefone, cidade, email, senha):
 
         try:
             self.db.cursor.execute("SELECT * FROM usuarios WHERE email=?", (email,))
             if self.db.cursor.fetchone():
-                print("Usuário ja existe !")
+                print("Já existe um usuário com esse e-mail!")
                 return
 
-            self.db.cursor.execute("INSERT INTO usuarios(nome, sobrenome, email) VALUES(?, ?, ?)",
-                                   (nome, sobrenome, email))
+            self.db.cursor.execute("INSERT INTO usuarios(nome, data_nascimento, telefone, cidade, email, senha) VALUES(?, ?, ?, ?, ?, ?)",
+                                   (nome, data_nascimento, telefone, cidade, email, senha))
 
             self.db.conn.commit()
             print("Usuário criado com sucesso !")
