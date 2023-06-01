@@ -4,7 +4,7 @@ from database import db
 class Entrar:
 
     def __init__(self):
-        self.db = db.Database("RedeSocial")
+        self.db = db.Database()
 
     def login(self, email, senha):
         try:
