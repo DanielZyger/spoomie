@@ -14,6 +14,7 @@ if __name__ == '__main__':
     register_class = register.Registro()
     Grafo = grafo.Grafo()
     Logado = False
+    OptionLogado = None
 
     Grafo.retornaEmailsDB()
 
@@ -33,7 +34,12 @@ if __name__ == '__main__':
 
             while Logado:
                 print("O que deseja fazer ?\n1. Seguir usuário\n2. Deixar de seguir um usuário\n3. Listar usuários\n4. Consultar dados de usuário\n0. Sair da conta")
-                OptionLogado = int(input())
+
+                try:                                #caso o usuario digite uma opçao que nao exista, ele vai voltar pro inicio do while e pedir uma opçao valida
+                    OptionLogado = int(input())
+                except Exception as e:
+                    print("Digite uma opção válida !\n")
+                    continue
 
                 if OptionLogado == 1:
                     print("Digite o email do usuário que você deseja seguir: ")

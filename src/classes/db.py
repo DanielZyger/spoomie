@@ -44,7 +44,7 @@ class Database:
             self.cursor.execute('''DELETE FROM usuarios WHERE email=?''', (email,))
             self.conn.commit()
             print("Usuário excluido")
-            self.conn.close()
+            #self.conn.close()
 
         except Exception as e:
             print("Problema ao excluir usuário: ", e)
@@ -52,12 +52,12 @@ class Database:
 
     def verificaExistencia(self):
         try:
-            UserDic = set()
+            UserSet = set()
 
             for user in self.cursor.execute('''SELECT email FROM usuarios''').fetchall():
-                UserDic.add(user[0])
+                UserSet.add(user[0])
 
-            return UserDic
+            return UserSet
 
         except Exception as e:
             print("Problema ao retornar usuarios que estão no banco de dados: ", e)
@@ -67,9 +67,9 @@ if __name__ == "__main__":
     #vamo cria todas as tabelas que precisarem nesse arquivo.
 
     db = Database()
-    #Email = str(input())
-    #db.criaTabelaUsuarios()
-    #db.excluirUsuario("teste@gmail")
+    """Email = str(input())
+    db.criaTabelaUsuarios()
+    db.excluirUsuario("teste@gmail")
     teste = db.verificaExistencia()
     for i in teste:
-        print(i)
+        print(i)"""

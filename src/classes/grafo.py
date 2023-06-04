@@ -1,6 +1,6 @@
 
 from spoomie.src.classes.db import Database
-
+from collections import deque
 
 
 class Grafo:
@@ -21,8 +21,12 @@ class Grafo:
 
     def adicionar_relacao(self, email1, email2):
         if email1 in self.usuarios and email2 in self.usuarios:
-            self.usuarios[email2].add(email1)
-            print(f"Agora você está seguindo {Database().retornaNome(email2)}\n")
+            if email1 in self.usuarios[email2]:                             #se a pessoa JA seguir a outra pessoa.
+                print(f"Você já segue {Database().retornaNome(email2)}\n")
+            else:
+                self.usuarios[email2].add(email1)
+                print(f"Agora você está seguindo {Database().retornaNome(email2)}\n")
+
         else:
             print(f"O email {email2} não tem uma conta no Spoomie")
 
@@ -46,3 +50,36 @@ class Grafo:
                 print("Não possui seguidores.")
 
             print()
+
+    def menor_caminho(self, emailOri, emailDest):
+        if emailOri not in self.usuarios or emailDest not in self.usuarios:
+            return None
+
+        queue = deque()
+        visitados = set()
+        predecessores = {}
+
+        queue.append(emailOri)
+        visitados.add(emailOri)
+        predecessores[emailOri] = None
+
+        while queue:
+            emailAtual = queue.popleft()
+
+            if emailAtual == emailDest:
+                caminho = [emailAtual]
+                emailAntec = predecessores[emailAtual]
+
+                while emailAntec is not None:
+                    caminho.insert(0, emailAntec)
+                    emailAntec = predecessores[emailAntec]
+
+                return caminho
+
+            for emailVizinho in self.usuarios[emailAtual]:
+                if emailVizinho not in visitados:
+                    queue.append(emailVizinho)
+                    visitados.add(emailVizinho)
+                    predecessores[emailVizinho] = emailAtual
+
+        return None

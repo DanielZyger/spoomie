@@ -19,7 +19,7 @@ class Registro():
 
             self.db.conn.commit()
             print("Usuário criado com sucesso !")
-            self.db.conn.close()
+            #self.db.conn.close()
 
             return
 
@@ -30,8 +30,7 @@ class Registro():
 
 if __name__ == "__main__":
 
-    #User = Registro()
-    #User.criaNewUser()
+    User = Registro()
     """conn = sqlite3.connect("RedeSocial.db")
     cursor = conn.cursor()
     for linha in cursor.execute("SELECT * FROM usuarios").fetchall():
