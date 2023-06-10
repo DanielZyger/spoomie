@@ -1,6 +1,6 @@
 import sqlite3
 import os
-
+import json
 
 class Database:
 
@@ -62,11 +62,31 @@ class Database:
         except Exception as e:
             print("Problema ao retornar usuarios que estão no banco de dados: ", e)
 
+
+    def FollowersAndFollowing(self):                        #ESSAS COLUNAS SERAO APAGADAS --- foram substituidas pelo JSON
+        try:
+            self.conn.execute('''ALTER TABLE usuarios ADD COLUMN seguidores TEXT''')
+            self.conn.commit()
+            print("Coluna seguidores criada")
+            self.conn.execute('''ALTER TABLE usuarios ADD COLUMN seguindo TEXT''')
+            self.conn.commit()
+            print("Coluna seguindo criada")
+            self.conn.close()
+
+        except Exception as e:
+            print("Problema ao criar novas colunas: ", e)
+
+
 if __name__ == "__main__":
 
     #vamo cria todas as tabelas que precisarem nesse arquivo.
 
     db = Database()
+    #print( "zezinho123@gmail" in db.verificaExistencia())
+
+    db.excluirUsuario('rogerio@gmail')
+
+    #db.FollowersAndFollowing()
     """Email = str(input())
     db.criaTabelaUsuarios()
     db.excluirUsuario("teste@gmail")

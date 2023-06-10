@@ -11,7 +11,6 @@ class Entrar:
         try:
             self.database.cursor.execute("SELECT email, senha FROM usuarios WHERE email=? and senha=?", (email, senha,))
             if self.database.cursor.fetchone():
-                print("Login realizado !!")
                 return True
 
             else:
