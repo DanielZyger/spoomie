@@ -1,7 +1,9 @@
+import os
+import sys
 
-from spoomie.src.classes.db import Database                         #precisa ter o caminho completo
+sys.path.append(os.path.join(os.getcwd()))
 
-
+from db import Database
 
 class Entrar:
     def __init__(self):

@@ -1,1 +1,17 @@
-{"bernardo@gmail": ["pamela@gmail"], "teste@gmail": ["bernardo@gmail"], "pamela@gmail": []}
+{
+  "alice@gmail.com": [
+    "teste@gmail"
+  ],
+  "beltrano@gmail.com": [
+    "teste@gmail"
+  ],
+  "bernardo@gmail": [],
+  "bob@gmail.com": [],
+  "ciclano@gmail.com": [
+    "bernardo@gmail"
+  ],
+  "pamela@gmail": [],
+  "teste@gmail": [
+    "pamela@gmail"
+  ]
+}

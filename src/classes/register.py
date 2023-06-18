@@ -1,5 +1,10 @@
+import os
+import sys
 
-from spoomie.src.classes.db import Database
+sys.path.append(os.path.join(os.getcwd()))
+from db import Database
+from grafo import Grafo
+
 
 class Registro():
 
@@ -11,15 +16,15 @@ class Registro():
         try:
             self.db.cursor.execute("SELECT * FROM usuarios WHERE email=?", (email,))
             if self.db.cursor.fetchone():
-                print("Já existe um usuário com esse e-mail!")
+                print("Já existe um usuário com esse e-mail!\n")
                 return
 
             self.db.cursor.execute("INSERT INTO usuarios(email, nome, dataNasc, telefone, cidade, senha) VALUES (?, ?, ?, ?, ?, ?)",
                                   (email, nome, dataNasc, telefone, cidade, senha))
 
             self.db.conn.commit()
-            print("Usuário criado com sucesso !")
-            #self.db.conn.close()
+            print("Usuário criado com sucesso !\n")
+            Grafo.adicionarUsuario(email)
 
             return
 

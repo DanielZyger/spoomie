@@ -44,7 +44,6 @@ class Database:
             self.cursor.execute('''DELETE FROM usuarios WHERE email=?''', (email,))
             self.conn.commit()
             print("Usuário excluido")
-            #self.conn.close()
 
         except Exception as e:
             print("Problema ao excluir usuário: ", e)
@@ -63,20 +62,6 @@ class Database:
             print("Problema ao retornar usuarios que estão no banco de dados: ", e)
 
 
-    def FollowersAndFollowing(self):                        #ESSAS COLUNAS SERAO APAGADAS --- foram substituidas pelo JSON
-        try:
-            self.conn.execute('''ALTER TABLE usuarios ADD COLUMN seguidores TEXT''')
-            self.conn.commit()
-            print("Coluna seguidores criada")
-            self.conn.execute('''ALTER TABLE usuarios ADD COLUMN seguindo TEXT''')
-            self.conn.commit()
-            print("Coluna seguindo criada")
-            self.conn.close()
-
-        except Exception as e:
-            print("Problema ao criar novas colunas: ", e)
-
-
 if __name__ == "__main__":
 
     #vamo cria todas as tabelas que precisarem nesse arquivo.
@@ -84,7 +69,8 @@ if __name__ == "__main__":
     db = Database()
     #print( "zezinho123@gmail" in db.verificaExistencia())
 
-    db.excluirUsuario('rogerio@gmail')
+    db.excluirUsuario('jandir@gmail')
+    db.excluirUsuario('email@gmail')
 
     #db.FollowersAndFollowing()
     """Email = str(input())
