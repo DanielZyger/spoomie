@@ -2,6 +2,8 @@ import sqlite3
 import os
 import json
 
+#EXCLUIR A TABELA E CRIAR OUTRA SEM AS COLUNAS SEGUINDO E SEGUIDORES
+
 class Database:
 
     def __init__(self):
@@ -51,12 +53,12 @@ class Database:
 
     def verificaExistencia(self):
         try:
-            UserSet = set()
+            Usuarios = set()
 
             for user in self.cursor.execute('''SELECT email FROM usuarios''').fetchall():
-                UserSet.add(user[0])
+                Usuarios.add(user[0])
 
-            return UserSet
+            return Usuarios
 
         except Exception as e:
             print("Problema ao retornar usuarios que estão no banco de dados: ", e)
@@ -67,10 +69,10 @@ if __name__ == "__main__":
     #vamo cria todas as tabelas que precisarem nesse arquivo.
 
     db = Database()
+    #db.criaTabelaUsuarios()
     #print( "zezinho123@gmail" in db.verificaExistencia())
+    db.excluirUsuario("Daniel@example.com")
 
-    db.excluirUsuario('jandir@gmail')
-    db.excluirUsuario('email@gmail')
 
     #db.FollowersAndFollowing()
     """Email = str(input())

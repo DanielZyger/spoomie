@@ -1,9 +1,11 @@
 import os
 import sys
 
-sys.path.append(os.path.join(os.getcwd()))
+diretorio_pai = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+diretorio_classes = os.path.join(diretorio_pai, "classes")
+sys.path.append(diretorio_pai)
 
-from db import Database
+from classes.db import Database
 
 class Entrar:
     def __init__(self):

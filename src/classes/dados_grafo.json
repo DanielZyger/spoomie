@@ -1,17 +1,9 @@
-{
-  "alice@gmail.com": [
-    "teste@gmail"
-  ],
-  "beltrano@gmail.com": [
-    "teste@gmail"
-  ],
-  "bernardo@gmail": [],
-  "bob@gmail.com": [],
-  "ciclano@gmail.com": [
-    "bernardo@gmail"
-  ],
-  "pamela@gmail": [],
-  "teste@gmail": [
-    "pamela@gmail"
-  ]
+{"Jane@gmail.com": ["Nicolas@gmail"],
+  "Michael@gmail.com": ["bernardo@gmail"],
+  "Emily@gmail.com": ["Michael@gmail.com", "Lucas@gmail.com"],
+  "bernardo@gmail": ["Daniel@example.com", "Nicolas@gmail", "Jane@gmail.com"],
+  "Daniel@example.com":  ["bernardo@gmail", "Nicolas@gmail"],
+  "Nicolas@gmail": ["bernardo@gmail", "Daniel@example.com"],
+  "Carlos@gmail.com": ["Emily@gmail.com", "Lucas@gmail.com"],
+  "Lucas@gmail.com": ["Daniel@example.com", "Jane@gmail.com"]
 }

@@ -1,9 +1,12 @@
 import os
 import sys
-sys.path.append(os.path.join(os.getcwd()))
+
+diretorio_pai = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+diretorio_classes = os.path.join(diretorio_pai, "classes")
+sys.path.append(diretorio_pai)
 
 import json
-from db import Database
+from classes.db import Database
 from collections import deque
 from graphviz import Digraph            #pip install graphviz
 from PIL import Image                   #pip install Pillow
@@ -16,7 +19,7 @@ class Grafo:
 
     def salvarDadosJson(self):
         with open(self.arquivo_json, "w") as arquivo:
-            json.dump({k: list(v) for k, v in self.usuarios.items()}, arquivo, indent=2)
+            json.dump({k: list(v) for k, v in self.usuarios.items()}, arquivo)
 
     def puxarDadosJson(self):
         with open(self.arquivo_json, "r") as arquivo:
@@ -24,9 +27,9 @@ class Grafo:
             self.usuarios = {emails: set(seguidores) for emails, seguidores in data.items()}
 
     def adicionarUsuario(self, email):
-        if email not in self.usuarios:
-            self.usuarios[email] = set()
-            self.salvarDadosJson()
+        #if email not in self.usuarios:
+        #self.usuarios[email] = set()
+        self.salvarDadosJson()
 
     def seguir(self, email1, email2):
         if email1 in self.usuarios and email2 in self.usuarios:
@@ -221,8 +224,8 @@ class Grafo:
         return UsuarioMaisSeguido if Seguidores > 0 else "Nenhum usuário da rede possui seguidores.\n"
 
     def informacoesRede(self):
-        print(f"Usuários cadastrados: {len(self.usuarios)}\nGrau médio de entrada: {self.grauMedioEntrada()}")
-        print(f"Grau médio de saída: {self.grauMedioSaida()}\nDiâmetro do grafo: {self.grafoDiametro()}")
+        print(f"Usuários cadastrados: {len(self.usuarios)}\nGrau médio de entrada: {self.grauMedioEntrada():.2f}")
+        print(f"Grau médio de saída: {self.grauMedioSaida():.2f}\nDiâmetro do grafo: {self.grafoDiametro()}")
         print(f"Usuário com mais seguidores: {self.UserMaisSeguido()}")
 
 
